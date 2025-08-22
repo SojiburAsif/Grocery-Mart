@@ -57,9 +57,9 @@ export default function AboutPage() {
           <div className="p-6 rounded-2xl bg-gradient-to-br from-white/3 to-white/2 border border-white/5 shadow-lg">
             <div className="rounded-xl overflow-hidden">
               <img
-                src="/grocery-hero-placeholder.jpg"
-                alt="Grocery showcase"
-                className="w-full h-56 object-cover block brightness-75"
+                src="https://i.ibb.co.com/CKjzm7Xt/vegetable-2924245-1920.jpg"
+                alt="Grocery Mart"
+                className="w-full h-64 object-cover object-center rounded-lg shadow-lg"
               />
             </div>
             <div className="mt-4">

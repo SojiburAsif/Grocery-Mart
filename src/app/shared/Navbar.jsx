@@ -83,7 +83,7 @@ const Navbar = () => {
                   </span>
                 </div>
                 <Link
-                  href="/dashboard/add-product"
+                  href="/Dashboard/addProduct"
                   className="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-md text-sm font-medium"
                 >
                   Dashboard
@@ -114,7 +114,7 @@ const Navbar = () => {
                   <>
                     <div className="px-3 py-2 text-sm text-gray-200">Hi, {session?.user?.name?.split(" ")[0]}</div>
                     <Link
-                      href="/dashboard/add-product"
+                      href="/Dashboard/addProduct"
                       className="block px-3 py-2 bg-gray-800 rounded-md mt-2 text-sm text-white"
                     >
                       Dashboard
