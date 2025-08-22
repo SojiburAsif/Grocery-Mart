@@ -8,21 +8,21 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 const slides = [
-  { id: 1, image: 'https://i.ibb.co.com/R4cNHGbB/pineapple-8440180-1920.jpg' },
+  { id: 1, image: 'https://i.ibb.co.com/CKjzm7Xt/vegetable-2924245-1920.jpg' },
   { id: 2, image: 'https://i.ibb.co.com/LHQrCk8/grapes-1844745-1920.jpg' },
   { id: 3, image: 'https://i.ibb.co.com/KpW8phx3/cherry-1437707-1920.jpg' },
 ]
 
 export default function Hero() {
   return (
-    <section className="relative w-full bg-black text-white">
+    <section className="relative w-full bg-black text-white font-Tektur">
       {/* background overlay */}
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/80 via-black/70 to-black/90"></div>
 
       {/* Container: constrained width and responsive padding */}
-      <div className="relative mx-auto w-full max-w-367 px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-360 px-4 sm:px-6 lg:px-8">
         {/* center content vertically: responsive min-heights */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[54vh] md:min-h-[64vh] lg:min-h-[79vh] py-8 lg:py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[54vh] md:min-h-[64vh] lg:min-h-[76vh] py-8 lg:py-14">
 
           {/* LEFT: TEXT BLOCK */}
           <div className="z-10 px-1 md:px-4">

@@ -7,7 +7,7 @@ export default function LoginPage() {
 
   const handleLogin = () => {
     setLoading(true);
-    signIn("google", { callbackUrl: "/products" });
+    signIn("google", { callbackUrl: "Dashboard/addProduct" });
   };
 
   return (
