@@ -110,13 +110,7 @@ const ProductDetailsPage = () => {
                             <FiCopy /> <span className="hidden sm:inline">Copy ID</span>
                         </button>
 
-                        <button
-                            onClick={handleEdit}
-                            className="flex items-center gap-2 text-sm px-3 py-1 rounded bg-green-600 hover:bg-green-500 transition"
-                            title="Edit product"
-                        >
-                            <FiEdit /> <span className="hidden sm:inline">Edit</span>
-                        </button>
+        
 
                         <button
                             onClick={handleDelete}
