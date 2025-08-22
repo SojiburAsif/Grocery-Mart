@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "./shared/Navbar";
+import { SessionWrapper } from "./shared/SessionWrapper";
+import Fooder from "./shared/Fooder";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +26,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+
+        <SessionWrapper>
+          <Navbar />
+          {children}
+        <Fooder></Fooder>
+        </SessionWrapper>
       </body>
     </html>
   );
