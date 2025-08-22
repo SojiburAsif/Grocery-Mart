@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -7,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiUser, FiHome, FiBox } from "react-icons/fi";
 import { FaLeaf, FaInfoCircle } from "react-icons/fa";
 
-export default function Navbar() {
+const Navbar = () => {
   const { data: session, status } = useSession();
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -16,52 +15,53 @@ export default function Navbar() {
   const isAuthenticated = status === "authenticated";
 
   const navLinks = [
-    { href: "/", label: "Home", icon: <FiHome className="w-4 h-4" aria-hidden /> },
-    { href: "/products", label: "Products", icon: <FiBox className="w-4 h-4" aria-hidden /> },
-    { href: "/about", label: "About", icon: <FaInfoCircle className="w-4 h-4" aria-hidden /> },
+    { href: "/", label: "Home", icon: <FiHome className="w-4 h-4" /> },
+    { href: "/products", label: "Products", icon: <FiBox className="w-4 h-4" /> },
+    { href: "/about", label: "About", icon: <FaInfoCircle className="w-4 h-4" /> },
   ];
 
-  const linkBase = "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors duration-150";
+  const linkClasses = (href) =>
+    `flex items-center gap-4 rounded-md px-4 bg-gray-950 text-sm ${pathname === href
+      ? "text-green-400 bg-gray-800"
+      : "text-gray-300 hover:text-green-300 "
+    }`;
 
-  const linkActive = "bg-gray-800 text-green-300";
-  const linkInactive = "text-gray-300 hover:text-green-300 hover:bg-gray-900";
-
-  const linkClasses = (href) => `${linkBase} ${pathname === href ? linkActive : linkInactive}`;
 
   return (
     <header className="bg-gray-950 text-white border-b border-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           {/* Brand */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <Link href="/" className="inline-flex items-center gap-3">
-              <div className="w-9 h-9 rounded-md flex items-center justify-center bg-transparent ring-1 ring-gray-800">
-                <FaLeaf className="text-emerald-300 w-5 h-5" />
+              <div
+                className="w-10 h-10 rounded-md flex items-center justify-center bg-transparent"
+                aria-hidden="true"
+              >
+                <FaLeaf className="text-emerald-300 w-6 h-6" />
               </div>
-              <span className="text-lg font-semibold text-green-300">Grocery Mart</span>
+              <span className="text-2xl font-semibold text-green-300">Grocery Mart</span>
             </Link>
           </div>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex lg:items-center lg:space-x-2">
+          {/* Center nav (desktop) */}
+          <nav className="hidden lg:flex space-x-2">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href} className={linkClasses(link.href)}>
-                {link.icon}
-                <span className="leading-none">{link.label}</span>
+                {link.icon} {link.label}
               </Link>
             ))}
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {/* Mobile menu toggle */}
             <button
-              className="inline-flex items-center justify-center p-2 rounded-md lg:hidden text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="inline-flex items-center justify-center p-2 rounded-md lg:hidden text-gray-300 hover:text-white"
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
-              aria-expanded={open}
             >
-              {open ? <FiX size={18} /> : <FiMenu size={18} />}
+              {open ? <FiX size={20} /> : <FiMenu size={20} />}
             </button>
 
             {/* Auth area */}
@@ -75,15 +75,19 @@ export default function Navbar() {
                 Login
               </button>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <FiUser className="text-gray-300" />
+                  <span className="hidden sm:inline text-sm font-medium text-gray-200">
+                    {session?.user?.name ? session.user.name.split(" ")[0] : session?.user?.email}
+                  </span>
+                </div>
                 <Link
                   href="/Dashboard/addProduct"
-                  className="inline-flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 rounded-md text-sm font-medium"
+                  className="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-md text-sm font-medium"
                 >
-                  <FiUser className="w-4 h-4 text-gray-200" />
-                  <span className="hidden sm:inline text-sm text-gray-200">{session?.user?.name ? session.user.name.split(" ")[0] : session?.user?.email}</span>
+                  Dashboard
                 </Link>
-
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
                   className="px-3 py-2 border border-red-600 text-red-400 hover:bg-red-600 hover:text-white rounded-md text-sm font-medium"
@@ -95,18 +99,17 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile nav panel */}
-        <div className={`lg:hidden transform transition-all duration-200 ${open ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-          <div className="mt-2 pb-4 border-t border-gray-800">
-            <div className="flex flex-col gap-2 px-1">
+        {/* Mobile nav */}
+        {open && (
+          <div className="lg:hidden mt-2 pb-4 border-t border-gray-800">
+            <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className={`${linkClasses(link.href)} w-full`}> 
-                  {link.icon}
-                  <span className="leading-none">{link.label}</span>
+                <Link key={link.href} href={link.href} className={linkClasses(link.href)}>
+                  {link.icon} {link.label}
                 </Link>
               ))}
 
-              <div className="pt-2 border-t border-gray-800 mt-2">
+              <div className="pt-2 border-t border-gray-800">
                 {isAuthenticated ? (
                   <>
                     <div className="px-3 py-2 text-sm text-gray-200">Hi, {session?.user?.name?.split(" ")[0]}</div>
@@ -134,8 +137,10 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;
