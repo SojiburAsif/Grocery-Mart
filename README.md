@@ -53,20 +53,7 @@ npm install
 # yarn
 ```
 
-### 3. Environment variables
-
-Create a `.env.local` file in the project root and add any required keys. Example:
-
-```env
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-MONGODB_URI=your_mongodb_connection_string
-NEXTAUTH_URL=http://localhost:3000
-# any other keys your app needs (STRIPE keys, API keys...)
-```
-
-> If you are using mock JSON data (e.g. `/data/products.json`), you **don't** need a database to start.
-
-### 4. Run development server
+### 3. Run development server
 
 ```bash
 npm run dev
@@ -76,7 +63,7 @@ npm run dev
 
 Open: [http://localhost:3000](http://localhost:3000)
 
-### 5. Build & production
+### 4. Build & production
 
 ```bash
 npm run build
