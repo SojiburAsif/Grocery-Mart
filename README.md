@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Grocery Mart
 
-## Getting Started
+Live: [https://grocery-mart-git-main-md-asifs-projects-6f72bb60.vercel.app/](https://grocery-mart-git-main-md-asifs-projects-6f72bb60.vercel.app/)
 
-First, run the development server:
+---
+
+## Short project description
+
+**Grocery Mart** is a responsive Next.js grocery storefront built for demo and portfolio use. It showcases product listings, a product detail view, cart and checkout flows, and admin-style API endpoints (mock or real) for managing products. The design focuses on fast browsing, clear product cards, and a modern mobile-first UI.
+
+---
+
+## Features
+
+* Product listing with categories and search
+* Product detail pages with images and descriptions
+* Cart management (add / remove / update quantity)
+* Checkout flow (mocked or integrated with a payment provider)
+* Responsive Swiper hero and clean UI components
+* API routes for products (mock JSON or connected DB)
+
+---
+
+## Tech stack
+
+* Next.js (app / pages — whichever your repo uses)
+* React
+* Tailwind CSS
+* Swiper.js for carousels
+* react-icons
+* (Optional) MongoDB / Firebase for persistence
+
+---
+
+## Setup & Installation
+
+> **Prerequisites**: Node.js (v16+ recommended) and npm or Yarn.
+
+1. **Clone the repo**
+
+```bash
+git clone https://github.com/MD-AsifS-Projects/grocery-mart.git
+cd grocery-mart
+```
+
+2. **Install dependencies**
+
+```bash
+# using npm
+npm install
+
+# or using yarn
+# yarn
+```
+
+3. **Environment variables**
+
+Create a `.env.local` file in the project root and add any required keys. Example:
+
+```
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_URL=http://localhost:3000
+# any other keys your app needs (STRIPE keys, API keys...)
+```
+
+> If you are using mock JSON data (e.g. `/data/products.json`), you don't need a database to start.
+
+4. **Run development server**
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+5. **Build & production**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+# or using Vercel / Netlify: push to the repo and let platform handle builds
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts (example from `package.json`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  }
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Route Summary
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> Below routes are example routes — adjust based on your implementation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Public pages
+
+* `/` — Home (Hero, featured products, categories)
+* `/products` — Product listing (filter / search)
+* `/products/[id]` — Product detail page
+* `/about` — About / info (optional)
+
+### Cart & Checkout
+
+* `/cart` — User cart (view & update quantities)
+* `/checkout` — Checkout / payment page (mock or integrated)
+
+### Auth & User
+
+* `/auth/login` — Login (if applicable)
+* `/auth/register` — Register (if applicable)
+* `/profile` — User profile / order history (protected)
+
+### Admin (example)
+
+* `/dashboard` — Admin area (manage products / orders) — protected
+
+### API routes (Next.js API)
+
+* `/api/products` — GET list / POST create (mock or DB)
+* `/api/products/[id]` — GET / PUT / DELETE single product
+* `/api/cart` — cart actions (optional)
+
+---
+
+## Notes & Tips
+
+* For quick demos you can keep product data in `/data/products.json` and fetch it from API routes, then later replace with a DB.
+* Keep environment secrets out of the repo; use `.env.local` and platform secrets on Vercel.
+* If you use Google Fonts via `@import` in `globals.css`, consider switching to `next/font` or `link` preconnect for performance.
+
+---
+
+## License & Contact
+
+This project is for demo/portfolio. Use as you like. For questions or help, contact: **MD Asif** (ask in the repo issues or DM).
+
+---
+
+*README generated for your Grocery Mart project. Need changes, extra sections (API examples, database seeding script, or badges)? বলো আমি update করে দেই.*
